@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="student-reg.css">
+    <script type="module" src="student-reg.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>Join the Future of Smart Learning </h1>
+    </header>
+    <main>
+        <div id="container">
+            <form action="submit" id="SR">
+                <div id="msgBox" style="display:none; transition: opacity 1s;"></div>
+
+                <label for="Name" class="lavels">Full name </label>
+                <input type="text" class="st_Form" id="name" required>
+
+                <label for="M_name" class="lavels">Mother name</label>
+                <input type="text" class="st_Form" id="M_name" required>
+
+                <label for="F_name" class="lavels">Father name </label>
+                <input type="text" class="st_Form" id="F_name" required>
+
+                <label for="age" class="lavels"> Student DOB </label>
+                <input type="date" class="st_Form" id="age" required>
+
+                <label for="w_NUM" class="lavels">Whatsapp Number</label>
+                <input type="tel" class="st_Form" id="w_NUM" name="phone" placeholder="Enter 10-digit number"
+                    maxlength="10" minlength="10" required>
+
+                <label for="class" class="lavels">Standered</label>
+                <input type="text" name="" id="class" class="st_Form">
+
+                <label for="Add_miss" class="lavels">Admistion year</label>
+                <input type="date" class="st_Form" id="Add_miss">
+
+                <label for="coll_Id" class="lavels"> Collage Id</label>
+                <input type="text" class="st_Form" id="coll_Id">
+
+                <label for="Email" class="lavels"> Email:</label>
+                <input type="email" class="st_Form" id="Email">
+               
+
+                <label for="pass" class="lavels"> Create password</label>
+                    <input type="password" id="pass" class="st_Form" name="password" required minlength="8"
+                        maxlength="20" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}"
+                        title="Must contain at least 1 uppercase, 1 lowercase, 1 number, 1 special character, and be at least 8 characters long" />
+
+                    <input type="submit" value="submit" id="submit">
+
+
+            </form>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+
+</body>
+
+</html>

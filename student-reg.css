@@ -1,0 +1,15 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#msgBox {
+  background-color: #28a745;
+  color: #fff;
+  padding: 12px 18px;
+  margin-top: 15px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1rem;
+  animation: fadeOut 6s forwards;
+  opacity: 1;
+}
