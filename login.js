@@ -7,27 +7,27 @@ const FormBox = document.querySelector(".form-box");
 
 // Function to remove any existing registration link
 function removeExistingRegisterLink() {
-    let existingLink = document.querySelector(".register-link");
-    if (existingLink) {
-        existingLink.remove();
-    }
+  let existingLink = document.querySelector(".register-link");
+  if (existingLink) {
+    existingLink.remove();
+  }
 }
 //Registration link for student 
 
 for (let i = 0; i < StudentOptions.length; i++) {
 
-    StudentOptions[i].addEventListener("click", function () {
+  StudentOptions[i].addEventListener("click", function () {
 
-        removeExistingRegisterLink(); //Remove any existing link
+    removeExistingRegisterLink(); //Remove any existing link
 
-        if (StudentOptions[i].checked && StudentOptions[i].value === "Student" ) {
-            // Add the registration link for Student
-            FormBox.insertAdjacentHTML("beforeend", '<a href="student-reg.html" class="register-link">Register as Student</a>');
-        }
-         if(StudentOptions[i].checked && StudentOptions[i].value=== "admin"){
-        FormBox.insertAdjacentHTML("beforeend",'<a href="Registration.html" class="register-link">Register as Admin</a>')
+    if (StudentOptions[i].checked && StudentOptions[i].value === "Student") {
+      // Add the registration link for Student
+      FormBox.insertAdjacentHTML("beforeend", '<a href="student-reg.html" class="register-link">Register as Student</a>');
     }
-    });
+    if (StudentOptions[i].checked && StudentOptions[i].value === "admin") {
+      FormBox.insertAdjacentHTML("beforeend", '<a href="Registration.html" class="register-link">Register as Admin</a>')
+    }
+  });
 }
 
 
@@ -35,10 +35,43 @@ for (let i = 0; i < StudentOptions.length; i++) {
 
 //Code for loging
 let submit = document.getElementById("submit");
-submit.addEventListener("click",()=>{
-    const email = document.getElementById("email");
-    const Password = document.getElementById("password");
-    firebase.auth().signInWithEmailAndPassword(email, Password)
+submit.addEventListener("click", () => {
+  for (let i = 0; i < StudentOptions.length; i++) {
+
+    StudentOptions[i].addEventListener("click", function () {
+      const Email = document.getElementById("email");
+      const Password = document.getElementById("password");
+
+
+
+
+      if (StudentOptions[i].checked && StudentOptions[i].value === "Student") {
+        // log for Student
+        firebase.auth().signInWithEmailAndPassword(email, Password)
+          .then((userCredential) => {
+            // Signed in
+            var user = userCredential.user;
+
+            // ...
+          })
+          .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+          });
+
+
+
+      }
+      if (StudentOptions[i].checked && StudentOptions[i].value === "admin") {
+        
+      }
+    });
+  }
+
+
+})
+
+firebase.auth().signInWithEmailAndPassword(email, Password)
   .then((userCredential) => {
     // Signed in
     var user = userCredential.user;
@@ -48,7 +81,7 @@ submit.addEventListener("click",()=>{
     var errorCode = error.code;
     var errorMessage = error.message;
   });
-})
+
 
 
 

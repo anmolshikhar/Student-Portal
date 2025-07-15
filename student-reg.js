@@ -47,7 +47,7 @@ submit_Btn.addEventListener("click", (event) => {
   let addmistion_year = document.getElementById("Add_miss").value;
   let Password = document.getElementById("pass").value;
   let email = document.getElementById("Email").value;
-  let collage_Id = document.getElementById("coll_Id")
+  let collage_Id = document.getElementById("coll_Id").value
 
   createUserWithEmailAndPassword(auth, email, Password)
     .then((userCredential) => {
@@ -71,7 +71,10 @@ submit_Btn.addEventListener("click", (event) => {
       return setDoc(userDoc, userData);
     })
     .then(() => {
-      window.location.href = "student-reg.html";
+      setTimeout(()=>{
+         window.location.href = "student-reg.html";
+      },5000)
+     
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -82,5 +85,7 @@ submit_Btn.addEventListener("click", (event) => {
       } else {
         mesShow('Unable to create account: ' + errorMessage, 'msgBox');
       }
+      setTimeout(()=>{event.preventDefault();},10000)
+      
     });
 });

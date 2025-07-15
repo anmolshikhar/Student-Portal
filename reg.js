@@ -30,7 +30,7 @@ function msgshow(message, id) {
 
     setTimeout(() => {
         msgDiv.style.opacity = 0;
-    }, 5000);
+    }, 10000);
 }
 
 submit.addEventListener("click", (event) => {
@@ -44,7 +44,7 @@ submit.addEventListener("click", (event) => {
     let collage = document.getElementById("coll").value;
     let collAdd = document.getElementById("collAdd").value;
     let pass = document.getElementById("Password").value;
-    let collId = document.getElementById("collId");
+    let collId = document.getElementById("collId").value;
 
 
     createUserWithEmailAndPassword(auth, userEmail, pass)
@@ -68,7 +68,9 @@ submit.addEventListener("click", (event) => {
             return setDoc(docRef, userdata);
         })
         .then(() => {
-            window.location.href = 'Registration.html';
+           setTimeout(()=>{
+             window.location.href = 'Registration.html';
+           },5000)
         })
         .catch((error) => {
             const errorCode = error.code;
@@ -79,5 +81,6 @@ submit.addEventListener("click", (event) => {
             } else {
                 msgshow('Unable to create account: ' + errorMessage, 'signupMsg');
             }
+            event.preventDefault();
         });
 });
