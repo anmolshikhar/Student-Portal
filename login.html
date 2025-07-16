@@ -6,36 +6,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="login.css">
-  <script type="module" src="firebase.js"></script>
+  <script type="module" src="login.js" defer></script>
 </head>
 
 <body>
-   <p>Welcome to the Student-Teacher Appointment Booking System</p>
+  <p>Welcome to the Student-Teacher Appointment Booking System</p>
+  <div id="msgBox" style="display: none;transition: opacity 1s;"></div>
   <div class="container" id="login">
     <h2>Login</h2>
-   
-    <p>Please select your role to login:</p>
 
-      <input type="radio" id="Teacher" name="LoginAS" value="teacher">
-      <label for="teacher">Teacher</label><br>
-      <input type="radio" id="Student" name="LoginAS" value="Student">
-      <label for="Student">Student</label><br>
-      <input type="radio" id="admin" name="LoginAS" value="admin">
-      <label for="admin">admin</label>
+
     <div class="form-box">
+
       <form id="loginForm">
+        <p>Please select your role to login:</p>
+
+          <input type="radio" id="Teacher" name="LoginAS" value="teacher">
+          <label for="Teacher">Teacher</label><br>
+          <input type="radio" id="Student" name="LoginAS" value="Student">
+          <label for="Student">Student</label><br>
+          <input type="radio" id="admin" name="LoginAS" value="admin">
+          <label for="admin">admin</label>
         <label for="email">Email:</label>
         <input type="email" id="email" required>
 
         <label for="password">Password:</label>
         <input type="password" id="password" required>
-        
-       <input type="submit" id="submit">
+
+        <input type="submit" id="submit">
       </form>
     </div>
   </div>
 
-  <script src="./login.js"></script>
+
 
 </body>
 
