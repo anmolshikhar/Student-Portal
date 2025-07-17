@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Student.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Book Appointment</h1>
+            <p>Schedule a meeting with your teacher</p>
+        </div>
+
+        <div class="step-indicator">
+            <div class="step-dot active"></div>
+            <div class="step-dot"></div>
+            <div class="step-dot"></div>
+            <div class="step-dot"></div>
+            <div class="step-dot"></div>
+            <div class="step-dot"></div>
+        </div>
+
+        <form id="appointmentForm">
+            <!-- Step 1: Select Teacher -->
+            <div class="form-step">
+                <label class="form-label">1. Select Teacher</label>
+                <div class="teacher-cards">
+                    <div class="teacher-card" onclick="selectTeacher(this, 'Dr. Smith')">
+                        <div class="teacher-avatar">DS</div>
+                        <div class="teacher-name">Dr. Smith</div>
+                        <div class="teacher-subject">Mathematics</div>
+                    </div>
+                    <div class="teacher-card" onclick="selectTeacher(this, 'Ms. Johnson')">
+                        <div class="teacher-avatar">MJ</div>
+                        <div class="teacher-name">Ms. Johnson</div>
+                        <div class="teacher-subject">English</div>
+                    </div>
+                    <div class="teacher-card" onclick="selectTeacher(this, 'Prof. Wilson')">
+                        <div class="teacher-avatar">PW</div>
+                        <div class="teacher-name">Prof. Wilson</div>
+                        <div class="teacher-subject">Physics</div>
+                    </div>
+                    <div class="teacher-card" onclick="selectTeacher(this, 'Dr. Brown')">
+                        <div class="teacher-avatar">DB</div>
+                        <div class="teacher-name">Dr. Brown</div>
+                        <div class="teacher-subject">Chemistry</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Choose Date -->
+            <div class="form-step">
+                <label class="form-label">2. Choose Date</label>
+                <input type="date" class="date-picker" id="appointmentDate" min="" onchange="updateSteps()">
+            </div>
+
+            <!-- Step 3: Select Time Slot -->
+            <div class="form-step">
+                <label class="form-label">3. Select Time Slot</label>
+                <div class="time-slots">
+                    <div class="time-slot" onclick="selectTime(this, '10:00 AM')">10:00 AM</div>
+                    <div class="time-slot" onclick="selectTime(this, '11:00 AM')">11:00 AM</div>
+                    <div class="time-slot" onclick="selectTime(this, '2:00 PM')">2:00 PM</div>
+                    <div class="time-slot" onclick="selectTime(this, '3:00 PM')">3:00 PM</div>
+                    <div class="time-slot" onclick="selectTime(this, '4:00 PM')">4:00 PM</div>
+                    <div class="time-slot" onclick="selectTime(this, '5:00 PM')">5:00 PM</div>
+                </div>
+            </div>
+
+            <!-- Step 4: Enter Reason -->
+            <div class="form-step">
+                <label class="form-label">4. Enter Reason (Optional)</label>
+                <textarea class="reason-input" id="appointmentReason"
+                    placeholder="Brief description of what you'd like to discuss..."
+                    onchange="updateSteps()"></textarea>
+            </div>
+
+            <!-- Step 5: Confirm Appointment -->
+            <div class="form-step">
+                <button type="submit" class="submit-btn" onclick="showConfirmation(event)">
+                    Book Appointment
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Step 6: Confirmation Popup -->
+    <div class="confirmation-popup" id="confirmationPopup">
+        <div class="popup-content">
+            <div class="success-icon">✓</div>
+            <h2 class="popup-title">Appointment Confirmed!</h2>
+            <p class="popup-message" id="confirmationMessage">
+                Your appointment has been successfully scheduled.
+            </p>
+            <button class="close-btn" onclick="closePopup()">Got it</button>
+        </div>
+    </div>
+</body>
+
+</html>

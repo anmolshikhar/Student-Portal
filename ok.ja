@@ -1,0 +1,113 @@
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js"
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyCyYBktfhRKht0_tDBkbCtVMZTGJz8ouJ8",
+  authDomain: "student-teacher-appointm-15733.firebaseapp.com",
+  databaseURL: "https://student-teacher-appointm-15733-default-rtdb.firebaseio.com",
+  projectId: "student-teacher-appointm-15733",
+  storageBucket: "student-teacher-appointm-15733.firebasestorage.app",
+  messagingSenderId: "603159057730",
+  appId: "1:603159057730:web:4b471c36f6714933abe4db"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+
+const StudentOptions = document.getElementsByName("LoginAS");
+const FormBox = document.querySelector(".form-box");
+
+// Function to remove any existing registration link
+function removeExistingRegisterLink() {
+  let existingLink = document.querySelector(".register-link");
+  if (existingLink) {
+    existingLink.remove();
+  }
+}
+
+// Add registration link dynamically based on selected role
+for (let i = 0; i < StudentOptions.length; i++) {
+  StudentOptions[i].addEventListener("click", function () {
+    removeExistingRegisterLink();
+
+    if (StudentOptions[i].checked && StudentOptions[i].value === "Student") {
+      FormBox.insertAdjacentHTML("beforeend", '<a href="student-reg.html" class="register-link">Register as Student</a>');
+    } else if (StudentOptions[i].checked && StudentOptions[i].value === "admin") {
+      FormBox.insertAdjacentHTML("beforeend", '<a href="Registration.html" class="register-link">Register as Admin</a>');
+    }
+  });
+}
+
+// Function for showing message
+function msgBox(msg, Id) {
+  var message = document.getElementById(Id);
+  if (!message) return;
+  message.textContent = msg;
+  message.style.display = "block";
+  message.style.opacity = 1;
+  setTimeout(() => {
+    message.style.opacity = 0;
+  }, 5000);
+}
+
+// LOGIN FUNCTION
+let submit = document.getElementById("submit");
+submit.addEventListener("click", () => {
+  const Email = document.getElementById("email").value;
+  const Password = document.getElementById("password").value;
+
+  let selectedRole = "";
+  for (let i = 0; i < StudentOptions.length; i++) {
+    if (StudentOptions[i].checked) {
+      selectedRole = StudentOptions[i].value;
+      break;
+    }
+  }
+
+  if (!selectedRole) {
+    msgBox("Please select a role (Student/Admin)", "msgBox");
+    return;
+  }
+
+  if (!Email || !Password) {
+    msgBox("Email or password cannot be empty", "msgBox");
+    return;
+  }
+
+  signInWithEmailAndPassword(auth,Email,Password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      localStorage.setItem("loggedInUserId", user.uid);
+
+      // Redirect based on role
+      if (selectedRole === "Student") {
+        window.location.href = "index.html";
+      } 
+      if (selectedRole === "admin") {
+        window.location.href = "admin.html"; 
+      }
+      if(selectedRole === "teacher"){
+        window.location.href = "index.html"
+      }
+      
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+
+      if (errorCode === 'auth/invalid-credential' || errorCode === 'auth/user-not-found') {
+        msgBox("Invalid email or password", "msgBox");
+      } else {
+        msgBox("Something went wrong: " + errorMessage, "msgBox");
+      }
+    });
+});

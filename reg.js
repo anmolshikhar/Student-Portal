@@ -64,7 +64,7 @@ submit.addEventListener("click", (event) => {
 
             msgshow('Account is created', 'signupMsg');
 
-            const docRef = doc(db, "users", user.uid); // collection = users
+            const docRef = doc(db, "admin", user.uid); // collection = users
             return setDoc(docRef, userdata);
         })
         .then(() => {

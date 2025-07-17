@@ -34,6 +34,27 @@ function msgBox(message, elementId) {
     }, 1000);
   }, 3000);
 }
+const StudentOptions = document.getElementsByName("LoginAS");
+const FormBox = document.querySelector(".form-box"); // Make sure this matches your HTML
+
+function removeExistingLink() {
+  let existingLink = document.querySelector(".register-link");
+  if (existingLink) {
+    existingLink.remove();
+  }
+}
+
+for (let i = 0; i < StudentOptions.length; i++) {
+  StudentOptions[i].addEventListener("click", () => {
+    removeExistingLink();
+
+    if (StudentOptions[i].checked && StudentOptions[i].value === "Student") {
+      FormBox.insertAdjacentHTML("beforeend", '<a href="student-reg.html" class="register-link">Register as Student</a>');
+    } else if (StudentOptions[i].checked && StudentOptions[i].value === "admin") {
+      FormBox.insertAdjacentHTML("beforeend", '<a href="Registration.html" class="register-link">Register as Admin</a>');
+    }
+  });
+}
 
 // Wait for DOM to load
 document.addEventListener('DOMContentLoaded', function() {
@@ -75,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Redirect based on role
         if (selectedRole === "Student") {
-          window.location.href = "index.html";
+          window.location.href = "Student.html";
         } else if (selectedRole === "admin") {
           window.location.href = "admin.html";
         } else if (selectedRole === "Teacher") {
