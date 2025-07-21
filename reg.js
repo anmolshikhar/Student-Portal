@@ -30,7 +30,7 @@ function msgshow(message, id) {
 
     setTimeout(() => {
         msgDiv.style.opacity = 0;
-    }, 10000);
+    }, 1000000);
 }
 
 submit.addEventListener("click", (event) => {

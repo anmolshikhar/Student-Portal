@@ -25,7 +25,7 @@ function msgBox(message, elementId) {
   msgElement.textContent = message;
   msgElement.style.display = 'block';
   msgElement.style.opacity = '1';
-  
+
   // Hide message after 3 seconds
   setTimeout(() => {
     msgElement.style.opacity = '0';
@@ -57,58 +57,69 @@ for (let i = 0; i < StudentOptions.length; i++) {
 }
 
 // Wait for DOM to load
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const submit = document.getElementById("submit");
-  
+
   submit.addEventListener("click", (event) => {
     event.preventDefault(); // Prevent form submission
-    
+
     const Email = document.getElementById("email").value;
     const Password = document.getElementById("password").value;
-    
+
     // Get all radio buttons with name="LoginAS"
-    const StudentOptions = document.getElementsByName("LoginAS");
-    
     let selectedRole = "";
+
+    const StudentOptions = document.getElementsByName("LoginAS");
+
+
     for (let i = 0; i < StudentOptions.length; i++) {
       if (StudentOptions[i].checked) {
         selectedRole = StudentOptions[i].value;
         break;
       }
     }
-    
+
     // Validation
     if (!selectedRole) {
       msgBox("Please select a role (Student/Teacher/Admin)", "msgBox");
       return;
     }
-    
+
     if (!Email || !Password) {
       msgBox("Email or password cannot be empty", "msgBox");
       return;
     }
-    
+
+
+
     // Firebase authentication
     signInWithEmailAndPassword(auth, Email, Password)
       .then((userCredential) => {
-        const user = userCredential.user;
-        localStorage.setItem("loggedInUserId", user.uid);
-        
-        // Redirect based on role
+       // Redirect based on role
+
         if (selectedRole === "Student") {
+          const user = userCredential.user;
+          localStorage.setItem("loggedInUserId", user.uid);
           window.location.href = "Student.html";
         } else if (selectedRole === "admin") {
+          const user = userCredential.admin;
+          localStorage.setItem("loggedInUserId", user.uid);
           window.location.href = "admin.html";
-        } else if (selectedRole === "Teacher") {
+        } else if (selectedRole === "teacher") {
+          const user = userCredential.teacher;
+          localStorage.setItem("loggedInUserId", user.uid);
           window.location.href = "index.html";
         }
+
+
+
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        
+
         console.error("Authentication error:", errorCode, errorMessage);
-        
+
         if (errorCode === 'auth/invalid-credential') {
           msgBox("Invalid email or password", "msgBox");
         } else if (errorCode === 'auth/user-not-found') {
@@ -120,7 +131,9 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
           msgBox("Something went wrong: " + errorMessage, "msgBox");
         }
-        
+
       });
   });
 });
+//loging for the booking page 
+

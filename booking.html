@@ -5,72 +5,52 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-    <style>
-    #login-box {
-      position: fixed;
-      top: 30%;
-      left: 35%;
-      background: #f2f2f2;
-      padding: 20px;
-      box-shadow: 0 0 10px gray;
-    }
-    
-    #book {
-      display: none;
-    }
+   
+  <link rel="stylesheet" href="Booking.css">
 
-    body {
-      font-family: Arial;
-    }
-
-    input, select, textarea {
-      width: 100%;
-      margin: 8px 0;
-    }
-    </style>
-  
-
-  <script type="module" src="booking.js" defer></script>
+  <script type="module" src="Booking.js" defer></script>
 </head>
 
-<body onload="showLogin()">
+<body>
   <!-- 🔒 Login Box -->
   <div id="login-box">
     <h3>Login</h3>
-    <input type="text" id="username" placeholder="Username" /><br />
-    <input type="password" id="password" placeholder="Password" /><br />
-    <button onclick="checkLogin()">Login</button>
-    <p id="error-msg" style="color: red;"></p>
+    <p id="msgBox" style="color: red;"></p>
+    <input type="email" id="Email" class="Loading-box" placeholder="Username" /><br />
+    <input type="password" id="password"  class="Loading-box" placeholder="Password" /><br />
+    <input type="submit" id="submit" class="Loading-box">
+    
   </div>
-
+  
   <div class="container" id="book">
     <h2>Book an Appointment</h2>
     <div class="form-box">
       <form id="appointmentForm">
         <label for="studentName">Your Name:</label>
         <input type="text" id="studentName" required>
-
+        
         <label for="teacher">Select Teacher:</label>
         <select id="teacher" required>
           <option value="">-- Choose Teacher --</option>
           <option value="Dr. Sharma">Dr. Sharma</option>
           <option value="Prof. Mehta">Prof. Mehta</option>
         </select>
-
+        
         <label for="date">Date:</label>
         <input type="date" id="date" required>
-
+        
         <label for="time">Time:</label>
         <input type="time" id="time" required>
-
+        
         <label for="message">Message / Purpose:</label>
         <textarea id="message" rows="4"></textarea>
-
+        
         <button type="submit">Book Appointment</button>
       </form>
     </div>
   </div>
-
+  
+ 
 </body>
 
 </html>
