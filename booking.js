@@ -2,7 +2,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
-import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js"
+import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -42,12 +43,17 @@ submit_Btn.addEventListener("click", (event) => {
   event.preventDefault();
   let Email = document.getElementById("Email").value;
   let Password = document.getElementById("password").value
+  let logBox = document.getElementById("login-box");
+  let bookBox = document.getElementById("book");
 
   signInWithEmailAndPassword(auth, Email, Password)
     .then((userCredential) => {
       const user = userCredential.user
       localStorage.setItem("loggedInUserId", user.uid);
-      
+      logBox.style.display = 'none';
+      bookBox.style.display = 'inline';
+
+
 
     })
     .catch((error) => {
@@ -67,4 +73,38 @@ submit_Btn.addEventListener("click", (event) => {
       }
 
     })
+})
+const appSub = document.getElementById("Appointment_btn")
+appSub.addEventListener("click", (event) => {
+  event.preventDefault();
+
+
+  const Name = document.getElementById("studentName").value
+  const Teacher = document.getElementById("teacher").value
+  const date = document.getElementById("date").value
+  const time = document.getElementById("time").value
+  const request = document.getElementById("message").value
+  const user_data = {
+    Name: Name,
+    Teacher: Teacher,
+    Date: date,
+    Time: time,
+    Request_msg: request
+
+  }
+  const auth = getAuth();
+  const user = auth.currentUser;
+  if (user) {
+    const docRef = doc(db, "appointment", user.uid);
+    try {
+      setDoc(docRef, user_data);
+      alert("Appointment saved successfully!");
+    } catch (error) {
+      console.error("Error saving appointment: ", error);
+      alert("Failed to save appointment.");
+    }
+  } else {
+    alert("User is not logged in.");
+  }
+
 })

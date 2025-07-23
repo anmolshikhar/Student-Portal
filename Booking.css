@@ -1,25 +1,28 @@
-#login-box {
-      position: fixed;
-      top: 30%;
-      left: 35%;
-      background: #f2f2f2;
-      padding: 20px;
-      box-shadow: 0 0 10px gray;
-    }
-    
-    #book {
-      display: none;
-    }
+/* #login-box {
+  position: fixed;
+  top: 30%;
+  left: 35%;
+  background: #f2f2f2;
+  padding: 20px;
+  box-shadow: 0 0 10px gray;
+}
 
-    body {
-      font-family: Arial;
-    }
+#book {
+  display: none;
+}
 
-    input, select, textarea {
-      width: 100%;
-      margin: 8px 0;
-    }
-    #msgBox {
+body {
+  font-family: Arial;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  margin: 8px 0;
+}
+
+#msgBox {
   background-color: #28a745;
   color: #fff;
   padding: 12px 18px;
@@ -29,4 +32,137 @@
   font-size: 1rem;
   animation: fadeOut 6s forwards;
   opacity: 1;
+} */
+ /* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: #f0f2f5;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial;
+}
+
+/* Login Box */
+#login-box {
+  position: fixed;
+  top: 30%;
+  left: 35%;
+  background: #f2f2f2;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px gray;
+  width: 300px;
+  text-align: center;
+}
+
+#login-box h3 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.Loading-box {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+#submit {
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+#submit:hover {
+  background-color: #0056b3;
+}
+
+/* Hide Booking Section Initially */
+#book {
+  display: none;
+}
+
+/* Appointment Form Container */
+.container {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  width: 400px;
+  margin-top: 100px;
+}
+
+.container h2 {
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.form-box form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-box label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #444;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  margin: 8px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+.form-box button {
+  padding: 12px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-box button:hover {
+  background-color: #218838;
+}
+
+/* Message Box Styling */
+#msgBox {
+  background-color: #28a745;
+  color: #fff;
+  padding: 12px 18px;
+  margin-top: 15px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1rem;
+  animation: fadeOut 6s forwards;
+  opacity: 1;
+}
+
+/* Fade Out Animation for Message Box */
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; display: none; }
 }
